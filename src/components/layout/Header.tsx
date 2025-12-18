@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -11,113 +11,119 @@ import Marquee from "@/components/layout/Marquee";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
+    <div className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full">
       {/* Marquee at the very top */}
-      <Marquee />
+      <div className="w-full">
+        <Marquee />
+      </div>
 
-      {/* Navbar below Marquee */}
-      <div
+      {/* Resizable Navbar */}
+      <motion.header
+        layout
+        initial={{ y: 0, width: "100%", borderRadius: 0 }}
+        animate={{
+          y: isScrolled ? 10 : 0,
+          width: isScrolled ? "90%" : "100%",
+          borderRadius: isScrolled ? "2rem" : "0rem",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={cn(
-          "w-full transition-all duration-300",
-          scrolled
-            ? "bg-white/90 backdrop-blur-md shadow-sm py-2"
-            : "bg-transparent py-4"
+          "relative z-50 flex items-center justify-between transition-all duration-300 mx-auto",
+          isScrolled
+            ? "bg-white/90 backdrop-blur-md shadow-lg border border-white/20 py-2 px-6 md:px-8 max-w-7xl"
+            : "bg-transparent py-4 px-4 md:px-6 w-full"
         )}
       >
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full">
-              <Image
-                src="/images/logo.webp"
-                alt="Yellowsense Technologies Logo"
-                fill
-                className="object-cover"
-              />
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full">
+            <Image
+              src="/images/logo.webp"
+              alt="Yellowsense Technologies Logo"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <span className="font-bold text-lg md:text-xl lg:text-2xl bg-gradient-to-br from-brand-primary to-brand-accent bg-clip-text text-transparent whitespace-nowrap">
+            Yellowsense Technologies
+          </span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {NAV_LINKS.map((link) => (
+            <div key={link.name} className="relative group">
+              <Link
+                href={link.href}
+                className="text-gray-800 hover:text-brand-primary font-medium transition-colors flex items-center gap-1 text-sm lg:text-base"
+              >
+                {link.name}
+                {link.submenu && <ChevronDown className="w-4 h-4" />}
+              </Link>
+
+              {link.submenu && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2 border border-gray-100">
+                  {link.submenu.map((subItem) => (
+                    <Link
+                      key={subItem.name}
+                      href={subItem.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-cream/30 hover:text-brand-primary rounded-md"
+                    >
+                      {subItem.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
-            <span className="font-bold text-xl md:text-2xl bg-gradient-to-br from-brand-primary to-brand-accent bg-clip-text text-transparent">
-              Yellowsense Technologies
-            </span>
-          </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <div key={link.name} className="relative group">
-                <Link
-                  href={link.href}
-                  className="text-gray-800 hover:text-brand-primary font-medium transition-colors flex items-center gap-1"
-                >
-                  {link.name}
-                  {link.submenu && <ChevronDown className="w-4 h-4" />}
-                </Link>
-                
-                {link.submenu && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2">
-                    {link.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-cream/30 hover:text-brand-primary rounded-md"
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <Link
-              href="/join-us"
-              className="text-gray-800 hover:text-brand-primary font-medium transition-colors"
-            >
-              Join Us
-            </Link>
-            <Link
-              href="tel:+919403890108"
-              className="text-gray-800 hover:text-brand-primary font-medium transition-colors"
-            >
-              +91 940-389-0108
-            </Link>
-            <Link
-              href="#"
-              className="bg-brand-secondary text-white px-6 py-2 rounded-full font-semibold hover:bg-brand-primary transition-colors shadow-lg shadow-brand-primary/20"
-            >
-              Pay Us
-            </Link>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-gray-800"
-            onClick={() => setIsOpen(!isOpen)}
+          ))}
+          <Link
+            href="/join-us"
+            className="text-gray-800 hover:text-brand-primary font-medium transition-colors text-sm lg:text-base"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+            Join Us
+          </Link>
+          <Link
+            href="tel:+919403890108"
+            className="text-gray-800 hover:text-brand-primary font-medium transition-colors text-sm lg:text-base whitespace-nowrap"
+          >
+            +91 940-389-0108
+          </Link>
+          <Link
+            href="#"
+            className="bg-brand-secondary text-white px-5 py-2 rounded-full font-semibold hover:bg-brand-primary transition-colors shadow-lg shadow-brand-primary/20 text-sm lg:text-base whitespace-nowrap"
+          >
+            Pay Us
+          </Link>
+        </nav>
 
-        {/* Mobile Nav */}
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-gray-800"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Mobile Nav Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 overflow-hidden shadow-xl rounded-b-2xl md:hidden"
             >
-              <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              <div className="flex flex-col p-4 gap-4">
                 {NAV_LINKS.map((link) => (
                   <div key={link.name}>
                     <Link
@@ -134,7 +140,7 @@ export default function Header() {
                             key={subItem.name}
                             href={subItem.href}
                             target="_blank"
-                            className="text-gray-600 hover:text-brand-primary"
+                            className="text-gray-600 hover:text-brand-primary py-1 block"
                             onClick={() => setIsOpen(false)}
                           >
                             {subItem.name}
@@ -151,18 +157,26 @@ export default function Header() {
                 >
                   Join Us
                 </Link>
-                <Link
-                  href="#"
-                  className="block text-center bg-brand-secondary text-white px-6 py-3 rounded-full font-semibold"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Pay Us
-                </Link>
+                <div className="pt-2 border-t border-gray-100 mt-2">
+                  <Link
+                    href="tel:+919403890108"
+                    className="block text-lg font-medium text-gray-800 hover:text-brand-primary mb-4"
+                  >
+                    +91 940-389-0108
+                  </Link>
+                  <Link
+                    href="#"
+                    className="block text-center bg-brand-secondary text-white px-6 py-3 rounded-full font-semibold w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Pay Us
+                  </Link>
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </header>
+      </motion.header>
+    </div>
   );
 }
