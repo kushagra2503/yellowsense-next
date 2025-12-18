@@ -151,9 +151,7 @@ interface NavbarButtonProps {
   variant?: "primary" | "secondary" | "dark" | "gradient";
 }
 
-const NavbarButton = ({ href, as = Link, children, className, variant = "primary" }: NavbarButtonProps) => {
-  const Component = as;
-  
+const NavbarButton = ({ href, as: Component = Link, children, className, variant = "primary" }: NavbarButtonProps) => {
   const variants = {
     primary: "bg-brand-primary text-white hover:bg-brand-secondary",
     secondary: "bg-brand-secondary text-white hover:bg-brand-primary shadow-lg shadow-brand-primary/20",
