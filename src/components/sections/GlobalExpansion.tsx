@@ -225,14 +225,6 @@ export default function GlobalExpansion() {
                 <div className="text-gray-500 text-sm">Rating</div>
               </motion.div>
             </div>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-brand-accent to-[#F9FF22] text-gray-900 font-bold rounded-full shadow-lg shadow-brand-accent/30 hover:shadow-brand-accent/50 transition-shadow"
-            >
-              Start Booking Now
-            </motion.button>
           </motion.div>
 
           {/* Globe */}
