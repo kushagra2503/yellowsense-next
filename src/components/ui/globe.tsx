@@ -196,7 +196,7 @@ function Globe({ globeConfig, data }: WorldProps) {
       .arcStartLng((d) => (d as Position).startLng)
       .arcEndLat((d) => (d as Position).endLat)
       .arcEndLng((d) => (d as Position).endLng)
-      .arcColor((d) => (d as Position).color)
+      .arcColor((d: unknown) => (d as Position).color)
       .arcAltitude((d) => (d as Position).arcAlt)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
       .arcDashLength(defaultProps.arcLength)
