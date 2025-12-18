@@ -159,8 +159,11 @@ const NavbarButton = ({ href, as: Component = Link, children, className, variant
     gradient: "bg-gradient-to-r from-brand-primary to-brand-accent text-white hover:opacity-90",
   };
 
+  // Cast Component to any to avoid "children expects type never" TS error with dynamic Next.js Link
+  const Element = Component as any;
+
   return (
-    <Component
+    <Element
       href={href}
       className={cn(
         "px-5 py-2 rounded-full font-semibold transition-colors text-sm lg:text-base whitespace-nowrap",
@@ -169,7 +172,7 @@ const NavbarButton = ({ href, as: Component = Link, children, className, variant
       )}
     >
       {children}
-    </Component>
+    </Element>
   );
 };
 

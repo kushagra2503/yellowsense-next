@@ -14,7 +14,7 @@ const PARTNERS = [
 
 export default function TrustedPartners() {
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-16 bg-brand-cream/10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 mb-12 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
           Trusted Partners
@@ -26,8 +26,8 @@ export default function TrustedPartners() {
 
       <div className="relative">
         {/* Gradient Masks for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-r from-brand-cream/10 to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-l from-brand-cream/10 to-transparent pointer-events-none" />
 
         <Marquee gradient={false} speed={40} pauseOnHover>
           <div className="flex items-center gap-12 md:gap-24 pr-12 md:pr-24">
