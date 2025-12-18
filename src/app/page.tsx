@@ -11,21 +11,21 @@ const SERVICES = [
   {
     title: "Maid Service",
     description: "Professional cleaning, washing, and household chores assistance.",
-    image: "/images/maid.webp",
+    image: "/images/maidMobile.webp",
     link: "/maid",
     color: "bg-blue-100 text-blue-800",
   },
   {
     title: "Nanny Service",
     description: "Experienced caregivers for your little ones, ensuring safety and care.",
-    image: "/images/nanny.webp",
+    image: "/images/nannyMobile.webp",
     link: "/nanny",
     color: "bg-pink-100 text-pink-800",
   },
   {
     title: "Cook Service",
     description: "Delicious home-cooked meals prepared by hygienic and skilled cooks.",
-    image: "/images/cook.webp",
+    image: "/images/cookMobile.webp",
     link: "/cook",
     color: "bg-orange-100 text-orange-800",
   },
@@ -126,12 +126,12 @@ export default function Home() {
               transition={{ delay: index * 0.1 }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100 group"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-gradient-to-b from-gray-100 to-gray-50">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6">
