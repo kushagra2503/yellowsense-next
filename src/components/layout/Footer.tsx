@@ -12,13 +12,13 @@ export default function Footer() {
             <div className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-white/10">
               <Image
                 src="/images/logo.webp"
-                alt="Yellowsense Technologies Logo"
+                alt="YellowSense Logo"
                 fill
                 className="object-cover"
               />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-brand-accent to-[#F9FF22] bg-clip-text text-transparent">
-              Yellowsense Technologies
+              YellowSense
             </h2>
           </div>
           <button className="bg-brand-secondary px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-brand-secondary transition-colors">
@@ -93,7 +93,7 @@ export default function Footer() {
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             </div>
             <p className="md:ml-auto text-xs opacity-60">
-              © {new Date().getFullYear()} Yellowsense Technologies Pvt Ltd. All rights reserved.
+              © {new Date().getFullYear()} YellowSense Technologies Pvt Ltd. All rights reserved.
             </p>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Shield, Clock } from "lucide-react";
+import GlobalExpansion from "@/components/sections/GlobalExpansion";
 
 const SERVICES = [
   {
@@ -173,6 +174,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Global Expansion Section with Globe */}
+      <GlobalExpansion />
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 md:px-6 mb-12">
