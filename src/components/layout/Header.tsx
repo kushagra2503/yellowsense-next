@@ -40,13 +40,13 @@ export default function Header() {
             <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full">
               <Image
                 src="/images/logo.webp"
-                alt="YellowSense Logo"
+                alt="Yellowsense Technologies Logo"
                 fill
                 className="object-cover"
               />
             </div>
             <span className="font-bold text-xl md:text-2xl bg-gradient-to-br from-brand-primary to-brand-accent bg-clip-text text-transparent">
-              YellowSense
+              Yellowsense Technologies
             </span>
           </Link>
 

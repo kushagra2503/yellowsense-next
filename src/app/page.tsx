@@ -62,7 +62,7 @@ export default function Home() {
             className="text-center md:text-left"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-brand-dark">
-              Simplify Your Life with <span className="text-brand-primary">YellowSense</span>
+              Simplify Your Life with <span className="text-brand-primary">Yellowsense Technologies</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
               Reliable Maids, Nannies, and Cooks at your fingertips. 
@@ -93,7 +93,7 @@ export default function Home() {
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <Image
                 src="/images/landing.webp"
-                alt="YellowSense Happy Family"
+                alt="Yellowsense  Happy Family"
                 width={600}
                 height={400}
                 className="w-full h-auto object-cover"
@@ -180,7 +180,7 @@ export default function Home() {
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to find your perfect help?</h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of satisfied families who trust YellowSense for their household needs.
+              Join thousands of satisfied families who trust Yellowsense Technologies for their household needs.
             </p>
             <Link
               href="/join-us"

@@ -14,7 +14,7 @@ export default function JoinUsPage() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-dark">
-            Join the <span className="text-brand-primary">YellowSense</span> Family
+            Join the <span className="text-brand-primary">Yellowsense Technologies</span> Family
           </h1>
           <p className="text-xl text-gray-600 mb-8">
             Are you a skilled Maid, Nanny, or Cook? Join us to get consistent work, fair pay, and respect.
@@ -68,13 +68,13 @@ export default function JoinUsPage() {
         >
           <Image
             src="/images/join.webp"
-            alt="Join YellowSense Team"
+            alt="Join Yellowsense Technologies Team"
             fill
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/80 to-transparent flex items-end p-8">
             <p className="text-white text-2xl font-bold">
-              "Working with YellowSense has changed my life. I feel respected and secure."
+              "Working with Yellowsense Technologies has changed my life. I feel respected and secure."
               <br/>
               <span className="text-lg font-normal opacity-90 mt-2 block">- Sunita, Nanny</span>
             </p>

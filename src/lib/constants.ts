@@ -1,5 +1,5 @@
 export const COMPANY_INFO = {
-  name: "YellowSense Technologies Pvt Ltd",
+  name: "Yellowsense Technologies Pvt Ltd",
   phone: "+91 940-389-0108",
   email: "tech@yellowsense.in",
   address: "Bangalore",

@@ -16,8 +16,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "YellowSense | Book Nanny, Maid, Cook Services",
-  description: "YellowSense - AI based maid booking service. Driving financial inclusion in India.",
+  title: "Yellowsense Technologies | Book Nanny, Maid, Cook Services",
+  description: "Yellowsense Technologies - AI based maid booking service. Driving financial inclusion in India.",
+  icons: {
+    icon: [
+      { url: "/images/logo.webp", type: "image/webp" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/images/logo.webp",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
