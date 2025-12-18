@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Shield, Clock } from "lucide-react";
 import GlobalExpansion from "@/components/sections/GlobalExpansion";
+import TrustedPartners from "@/components/sections/TrustedPartners";
 
 const SERVICES = [
   {
@@ -198,6 +199,9 @@ export default function Home() {
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full translate-x-1/2 translate-y-1/2" />
         </div>
       </section>
+
+      {/* Trusted Partners Section */}
+      <TrustedPartners />
     </div>
   );
 }
